@@ -1,0 +1,20 @@
+services:
+# Teedy Application
+  docs:
+    image: sismics/docs:v1.10
+    restart: unless-stopped
+    ports:
+      # Map internal port to host
+      - "${DOCS_PORT}:8080"
+    environment:
+      # Base url to be used
+      DOCS_BASE_URL: "${DOCS_BASE_URL}"
+      # Set the admin email
+      DOCS_ADMIN_EMAIL_INIT: "${DOCS_ADMIN_EMAIL_INIT}"
+      # Set the admin password (in this example: "superSecure")
+      DOCS_ADMIN_PASSWORD_INIT: "${DOCS_ADMIN_PASSWORD_INIT}"
+    volumes:
+      - docker-docs-data:/data
+volumes:
+  docker-docs-data:
+
